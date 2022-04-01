@@ -1,0 +1,14 @@
+{% extends 'accounts/index.html' %}
+
+{% block body_block %}
+
+<form method="post">
+    {% csrf_token %}
+    ¿Desea eliminar esta publicación?
+    <input type="submit" placeholder ='Confirmar'>
+</form>
+
+
+    
+
+{% endblock body_block %}

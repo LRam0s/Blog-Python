@@ -1,0 +1,17 @@
+{% extends 'accounts/index.html' %}
+
+
+
+{% block body_block %}
+<form action={% url 'signup' %} method="post">
+    {% csrf_token %}
+    <table> 
+        {{form.as_table}}
+    </table>
+    <button>Registrase</button>
+</form>
+
+{% endblock body_block %}
+
+
+

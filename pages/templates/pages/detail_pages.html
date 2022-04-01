@@ -1,0 +1,20 @@
+{% extends 'accounts/index.html' %}
+
+{% block body_block %}
+
+<p>
+    <a href={% url 'list_pages' %}> Volver </a>
+</p>
+
+<p>
+    <li>Titulo: {{object.titulo}}</li>
+    <li>Subtitulo: {{object.subtitulo}}</li>
+    <li>Cuerpo: {{object.cuerpo}}</li>
+    <li>Autor: {{object.autor}}</li>
+    <li>Fecha de creación: {{object.fecha}}</li> 
+    <li>Imagen: {{object.imagen}}</li>        
+
+</p>
+
+
+{% endblock body_block %}
