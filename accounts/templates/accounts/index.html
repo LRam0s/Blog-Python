@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astro Motion by TemplateMo</title>
+    <title>El Rincón del Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href={% static "css/bootstrap.min.css" %}>
     <link rel="stylesheet" href={% static "css/slick.css" %} type="text/css" /> 
@@ -35,7 +35,6 @@ https://templatemo.com/tm-560-astro-motion
               </button>
               <div class="collapse navbar-collapse" id="navbar-supported-content">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-              
                   <li class="nav-item">
                     <a class="nav-link" href= {% url 'list_pages' %} data-no="1">Blogs</a>
                     <div class="circle"></div>
@@ -44,6 +43,16 @@ https://templatemo.com/tm-560-astro-motion
                     <a class="nav-link" href="#0" data-no="2">About</a>
                     <div class="circle"></div>
                   </li>
+                  {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href={% url 'logout' %} data-no="4">Logout</a>
+                    <div class="circle"></div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href={% url 'edit' %} data-no="5">Editar User</a>
+                    <div class="circle"></div>
+                  </li>
+                  {% else %}
                   <li class="nav-item">
                     <a class="nav-link" href={% url 'login' %} data-no="3">Login</a>
                     <div class="circle"></div>
@@ -52,6 +61,8 @@ https://templatemo.com/tm-560-astro-motion
                     <a class="nav-link" href={% url 'signup' %} data-no="4">Registrarse</a>
                     <div class="circle"></div>
                   </li>
+                  {% endif %}
+                  
                 </ul>
               </div>
             </nav>
@@ -67,15 +78,12 @@ https://templatemo.com/tm-560-astro-motion
           <div class="page-width-1 page-left">
             <div class="d-flex position-relative tm-border-top tm-border-bottom intro-container">
               <div class="intro-left tm-bg-dark">
-                <h2 class="mb-4">Welcome to Astro Motion</h2>
+                <h2 class="mb-4">Bienvenido al Rincón del Blog</h2>
             <p class="mb-4">
-              This HTML template has a motion video background loop which is provided by <a rel="sponsored" href="https://getfreepictures.com" target="_blank">Get Free Pictures</a>. This is
-              one-page responsive layout for your websites. Feel
-              free to use this for a commercial purpose. </p>
-              <p class="mb-0">
-                You are not permitted to redistribute this template on your Free CSS collection websites. Please <a rel="nofollow" href="https://templatemo.com/contact" target="_blank">contact us</a> for more information. </p>
+              Este es mi trabajo final del curso de Python en CoderHouse.
+              Nos embarcaremos en una emocionante aventura que solo va a durar como 5 minutos, ya que no tiene tantas funcionalidades.
+              La idea de esta página es crear una web similar a un blog en donde un usuario pueda cargar sus opiniones sobre el tema que le parezca relevante y compartirlo con los demas. </p>
               </div>
-              
               <div class="circle intro-circle-1"></div>
               <div class="circle intro-circle-2"></div>
               <div class="circle intro-circle-3"></div>
@@ -120,7 +128,7 @@ https://templatemo.com/tm-560-astro-motion
     <div class="container-fluid">
       <footer class="row mx-auto tm-footer">
         <div class="col-md-6 px-0">
-          Copyright 2021 Astro Motion Company Limited. All rights reserved.
+          Todos los derechos estan revervados para Astro Motion Company Limited, porque de ellos es el template. 
         </div>
         <div class="col-md-6 px-0 tm-footer-right">
           Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank" class="tm-link-white">TemplateMo</a>
