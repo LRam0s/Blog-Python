@@ -40,7 +40,7 @@ https://templatemo.com/tm-560-astro-motion
                     <div class="circle"></div>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#0" data-no="2">About</a>
+                    <a class="nav-link" href={% url 'about' %} data-no="2">About</a>
                     <div class="circle"></div>
                   </li>
                   {% if request.user.is_authenticated %}
@@ -49,7 +49,7 @@ https://templatemo.com/tm-560-astro-motion
                     <div class="circle"></div>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href={% url 'edit' %} data-no="5">Editar User</a>
+                    <a class="nav-link" href={% url 'detail_user' %} data-no="5"> {{request.user.username}}</a>
                     <div class="circle"></div>
                   </li>
                   {% else %}

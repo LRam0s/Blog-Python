@@ -1,3 +1,4 @@
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -16,10 +17,13 @@ class NuestroUserForm(UserCreationForm):
 
 class NuestraEdicionUser(forms.Form):
     
-    username = forms.CharField( max_length= 30)
+    
     email = forms.EmailField()
     password1 = forms.CharField(label = 'Contraseña', widget=forms.PasswordInput())
     password2 = forms.CharField(label = 'Confirmar Contraseña', widget=forms.PasswordInput())
 
     first_name = forms.CharField(label = 'Nombre', max_length=20, required=False)
     last_name = forms.CharField(label = 'Apellido', max_length=20, required = False)
+    avatar = forms.ImageField( required=False)
+    link = forms.URLField(required=False)
+    more_description = forms.CharField(max_length=300, required =False)

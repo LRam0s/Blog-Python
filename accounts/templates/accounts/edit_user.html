@@ -1,24 +1,25 @@
 {% extends 'accounts/index.html' %}
 
-
-
 {% block body_block %}
 
 <h2>
-    Edición de usuario
+    Edición de usuario <p>
+        <a href={% url 'inicio' %}> Volver </a>
+    </p>
 </h2>
+
+Usuario: {{request.user.username}}
 
 {% if msj %}
     {{msj}}
 {% endif %}
 
-<form action="" method="post">
+<form action= "" method="post" enctype= "multipart/form-data">
     {% csrf_token %}
     <table>  
         {{form.as_table}}
     </table>
     <button>Editar</button>
 </form>
-
 
 {% endblock body_block %}

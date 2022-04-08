@@ -1,11 +1,18 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,authenticate
+from django.contrib.auth.decorators import login_required
 from .forms import NuestroUserForm, NuestraEdicionUser
 from .models import Avatar
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.models import User
+
 
 def inicio (request):
     return render (request, 'accounts/index.html')
+
+def about (request):
+    return render(request,'accounts/about.html' )
 
 def mi_login(request):
     
@@ -41,15 +48,16 @@ def signup(request):
         else:
             return render(request,'accounts/signup.html', {'form': form, 'msj': 'Ha ocurrido un error durante el registro.'} )
 
-
     form = NuestroUserForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
 
 def editar (request): 
 
+    user_logued, _ = Avatar.objects.get_or_create(user=request.user)
+
     if request.method =='POST':
-        form = NuestraEdicionUser (request.POST)
+        form = NuestraEdicionUser (request.POST, request.FILES)
 
         if form.is_valid():
             
@@ -58,6 +66,10 @@ def editar (request):
             request.user.email = data.get('email', '')
             request.user.first_name = data.get('first_name', '')
             request.user.last_name = data.get('last_name', '')
+            user_logued.imagen = data.get('avatar', '')
+            user_logued.link = data.get('link', '')
+            user_logued.more_description = data.get('more_description', '')
+
             if data.get('password1') == data.get('password2') and len(data.get('password1')) >8:
                 request.user.set_password(data.get('password1'))
                 msj = 'Se modificó el password.'
@@ -65,14 +77,18 @@ def editar (request):
                 msj = 'No se modificó el password.'
 
             request.user.save()
+            user_logued.save()
 
             return render(request, 'accounts/index.html', {'msj': msj})
         else:
             return render(request, 'accounts/edit_user.html', {'form': form, 'msj':''})
 
-    form = NuestraEdicionUser(initial= {'first_name': request.user.first_name,
-    'last_name': request.user.last_name,    'email':request.user.email, 'username':request.user.username })
+    form = NuestraEdicionUser(initial= {'first_name': request.user.first_name,'last_name': request.user.last_name,    'email':request.user.email, 'avatar': user_logued.imagen, 'link':user_logued.link,'more_description': user_logued.more_description})
     return render (request, 'accounts/edit_user.html', {'form': form, 'msj': ''})
 
-#def buscar_url_avatar(user):
-    #return Avatar.objects.filter(user=user)[0].imagen.url
+
+@login_required
+def detail_user(request):
+    mas_datos, _ = Avatar.objects.get_or_create(user=request.user)
+    return render (request, 'accounts/detail_user.html', {'mas_datos':mas_datos})
+

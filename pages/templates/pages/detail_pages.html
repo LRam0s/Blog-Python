@@ -12,9 +12,10 @@
     <li>Cuerpo: {{object.cuerpo}}</li>
     <li>Autor: {{object.autor}}</li>
     <li>Fecha de creación: {{object.fecha}}</li> 
-    <li>Imagen: {{object.imagen}}</li>        
-
+    <li>Imagen:{% if object.imagen %}
+        <img src="{{object.imagen.url}}"></li> 
+        {% else %}
+        {% endif %}
 </p>
-
 
 {% endblock body_block %}

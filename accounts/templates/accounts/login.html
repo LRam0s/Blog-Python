@@ -1,15 +1,11 @@
 {% extends 'accounts/index.html' %}
 
-
-
 {% block body_block %}
-
 <p>
     {% if msj %}
         {{msj}}
     {% endif %}
 </p>
-
 
 <form action={% url 'login' %} method="post">
     {% csrf_token %}
@@ -20,8 +16,4 @@
 </form> 
 <a href={% url 'signup'%}> <button>Registrarse</button> </a>
 
-
 {% endblock body_block %}
-
-
-

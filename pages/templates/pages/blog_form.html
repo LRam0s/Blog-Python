@@ -2,14 +2,15 @@
 
 {% block body_block %}
 
-<form  method="post">
+<p>
+    <a href={% url 'list_pages' %}> Volver </a>
+</p>
+
+<form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" placeholder = 'Enviar'>
 
-</form>
-
-
-    
+</form>   
 
 {% endblock body_block %}

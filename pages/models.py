@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ImageField
 from ckeditor.fields import RichTextField
 from datetime import date
 
