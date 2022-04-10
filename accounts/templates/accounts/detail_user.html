@@ -11,7 +11,7 @@
     <li>Email: {{request.user.email}}</li>
     <li>Nombre: {{request.user.first_name}}</li>
     <li>Apellido: {{request.user.last_name}}</li>
-    <li>Imagen de Perfil: {% if True %}
+    <li>Imagen de Perfil: {% if mas_datos.imagen %}
         <img src="{{mas_datos.imagen.url}}" alt="Sin imagen de Perfil"></li>
         {% else %}
         {% endif %}

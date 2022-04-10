@@ -91,4 +91,3 @@ def editar (request):
 def detail_user(request):
     mas_datos, _ = Avatar.objects.get_or_create(user=request.user)
     return render (request, 'accounts/detail_user.html', {'mas_datos':mas_datos})
-

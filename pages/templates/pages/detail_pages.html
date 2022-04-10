@@ -9,7 +9,7 @@
 <p>
     <li>Titulo: {{object.titulo}}</li>
     <li>Subtitulo: {{object.subtitulo}}</li>
-    <li>Cuerpo: {{object.cuerpo}}</li>
+    <li>Cuerpo: {{object.cuerpo | safe }}</li>
     <li>Autor: {{object.autor}}</li>
     <li>Fecha de creación: {{object.fecha}}</li> 
     <li>Imagen:{% if object.imagen %}
