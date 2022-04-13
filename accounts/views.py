@@ -4,8 +4,6 @@ from django.contrib.auth import login,authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import NuestroUserForm, NuestraEdicionUser
 from .models import Avatar
-from django.views.generic import ListView, DetailView
-from django.contrib.auth.models import User
 
 
 def inicio (request):
@@ -51,7 +49,7 @@ def signup(request):
     form = NuestroUserForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
-
+@login_required
 def editar (request): 
 
     user_logued, _ = Avatar.objects.get_or_create(user=request.user)
